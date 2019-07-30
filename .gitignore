@@ -1,0 +1,20 @@
+
+target/
+logs/
+setup/*.jar
+setup/jre1.8.1_111/
+!.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+.mvn
+#jrebel
+rebel.xml
+
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
