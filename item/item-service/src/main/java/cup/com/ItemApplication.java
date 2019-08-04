@@ -5,18 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.annotations.ApiIgnore;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tk.mybatis.spring.annotation.MapperScan;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Description：
@@ -28,9 +22,9 @@ import java.util.List;
 @EnableDiscoveryClient
 @EnableSwagger2
 @MapperScan("cup.com.mapper")
-public class Item {
+public class ItemApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Item.class, args);
+        SpringApplication.run(ItemApplication.class, args);
     }
 
     /**

@@ -8,19 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Description：商品类目实体类
+ * Description：商品品牌实体类
  * Author:TengLu
  * Date:2019/7/30
- * Time:8:47
+ * Time:21:58
  */
-@Table(name = "tb_category")
+@Table(name = "tb_brand")
 @Data
-public class Category {
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long parentId;
-    private Boolean isParent;
-    private Integer sort;
+    private String image;
+    private Character letter;
 }

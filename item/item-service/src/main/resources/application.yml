@@ -10,6 +10,10 @@ spring:
       maximum-pool-size: 20
       minimum-idle: 10
 
+logging:
+  level:
+    cup.com.mapper: DEBUG
+
 eureka:
   client:
     service-url:

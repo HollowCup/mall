@@ -3,19 +3,19 @@ package cup.com;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Description：网关
+ * Description：
  * Author:TengLu
- * Date:2019/7/29
- * Time:22:42
+ * Date:2019/7/31
+ * Time:21:46
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableZuulProxy
-public class Gateway {
+@EnableSwagger2
+public class UploadApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Gateway.class, args);
+        SpringApplication.run(UploadApplication.class, args);
     }
 }
