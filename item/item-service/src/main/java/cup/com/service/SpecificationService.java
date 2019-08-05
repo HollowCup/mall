@@ -15,4 +15,6 @@ public interface SpecificationService {
     List<SpecGroup> queryGroupsByCid(Long cid);
 
     List<SpecParam> queryParamsByGid(Long gid);
+
+    List<SpecParam> queryParams(Long gid, Long cid, Boolean generic, Boolean searching);
 }

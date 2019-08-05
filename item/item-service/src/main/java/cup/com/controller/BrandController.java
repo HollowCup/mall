@@ -49,4 +49,14 @@ public class BrandController {
         brandService.addBrand(brand, categories);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping("cid/{cid}")
+    @ApiOperation(value = "根据分类id查询品牌信息", notes = "根据分类id查询品牌信息")
+    public ResponseEntity<List<Brand>> queryBrandByCategoryId(@PathVariable("cid") Long cid){
+        List<Brand> list = brandService.queryBrandByCategoryId(cid);
+        if (list == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(list);
+    }
 }

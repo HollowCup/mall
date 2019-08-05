@@ -38,4 +38,14 @@ public class SpecificationServiceImpl implements SpecificationService {
         record.setGroupId(gid);
         return specParamMapper.select(record);
     }
+
+    @Override
+    public List<SpecParam> queryParams(Long gid, Long cid, Boolean generic, Boolean searching) {
+        SpecParam record = new SpecParam();
+        record.setGroupId(gid);
+        record.setCid(cid);
+        record.setGeneric(generic);
+        record.setSearching(searching);
+        return specParamMapper.select(record);
+    }
 }

@@ -2,6 +2,7 @@ package cup.com.service.impl;
 
 import cup.com.constant.CategoryConstant;
 import cup.com.mapper.CategoryMapper;
+import cup.com.pojo.Brand;
 import cup.com.pojo.Category;
 import cup.com.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Description：
@@ -67,6 +69,12 @@ public class CategoryServiceImpl implements CategoryService {
                 categoryMapper.deleteByPrimaryKey(deleteCategory);
             }
         }
+    }
+
+    @Override
+    public List<String> queryNameByIds(List<Long> cids) {
+        List<Category> categories = categoryMapper.selectByIdList(cids);
+        return categories.stream().map(category -> category.getName()).collect(Collectors.toList());
     }
 
     private void getAllDeleteCategoryIds(List<Long> deleteIds, Long cid) {

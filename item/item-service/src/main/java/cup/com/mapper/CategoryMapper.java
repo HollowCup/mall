@@ -2,6 +2,7 @@ package cup.com.mapper;
 
 import cup.com.pojo.Category;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.additional.idlist.SelectByIdListMapper;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -11,5 +12,5 @@ import tk.mybatis.mapper.common.Mapper;
  * Time:8:49
  */
 @Repository
-public interface CategoryMapper extends Mapper<Category> {
+public interface CategoryMapper extends Mapper<Category>, SelectByIdListMapper<Category, Long> {
 }

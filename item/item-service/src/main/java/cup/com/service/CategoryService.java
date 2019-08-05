@@ -15,23 +15,37 @@ public interface CategoryService {
 
     /**
      * 根据pid查询分类
+     *
      * @param pid
      * @return
      */
     List<Category> queryCategoryByPid(Long pid) throws BusinessException;
+
     /**
      * 添加类目
+     *
      * @param category
      */
     void addCategory(Category category);
+
     /**
      * 修改类目
+     *
      * @param category
      */
     void updateCategory(Category category);
+
     /**
      * 删除类目
+     *
      * @param cid
      */
     void deleteCategory(Long cid);
+
+    /**
+     * 根据类目ids查询
+     *
+     * @param cids
+     */
+    List<String> queryNameByIds(List<Long> cids);
 }

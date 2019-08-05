@@ -1,11 +1,15 @@
 package cup.com.controller;
 
+import cup.com.pojo.Brand;
+import cup.com.pojo.PageResult;
 import cup.com.pojo.SpecGroup;
 import cup.com.pojo.SpecParam;
 import cup.com.service.SpecificationService;
+import cup.com.vo.BrandQueryByPageParameter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +46,20 @@ public class SpecificationController {
         List<SpecParam> params = specificationService.queryParamsByGid(gid);
         if (CollectionUtils.isEmpty(params)) {
             return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(params);
+    }
+
+    @GetMapping("/params")
+    @ApiOperation(value = "根据条件查询规格参数", notes = "根据条件查询规格参数")
+    public ResponseEntity<List<SpecParam>> queryParams(
+            @RequestParam(value = "gid", required = false) Long gid,
+            @RequestParam(value = "cid", required = false) Long cid,
+            @RequestParam(value = "generic", required = false) Boolean generic,
+            @RequestParam(value = "searching", required = false) Boolean searching){
+        List<SpecParam> params = specificationService.queryParams(gid,cid,generic,searching);
+        if (CollectionUtils.isEmpty(params)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.ok(params);
     }

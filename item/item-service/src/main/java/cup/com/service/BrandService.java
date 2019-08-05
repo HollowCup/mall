@@ -17,4 +17,6 @@ public interface BrandService {
     PageResult<Brand> queryBrandByPage(BrandQueryByPageParameter req);
 
     void addBrand(Brand brand, List<Long> categories);
+
+    List<Brand> queryBrandByCategoryId(Long cid);
 }

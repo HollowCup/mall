@@ -66,4 +66,9 @@ public class BrandServiceImpl implements BrandService {
         }
         categoryBrandMapper.insertList(insertObjs);
     }
+
+    @Override
+    public List<Brand> queryBrandByCategoryId(Long cid) {
+        return brandMapper.queryBrandByCategoryId(cid);
+    }
 }
