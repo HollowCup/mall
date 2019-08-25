@@ -59,4 +59,14 @@ public class BrandController {
         }
         return ResponseEntity.ok(list);
     }
+
+    @GetMapping("{id}")
+    @ApiOperation(value = "品牌id查询品牌信息", notes = "品牌id查询品牌信息")
+    public ResponseEntity<Brand> queryBrandById(@PathVariable("id") Long id){
+        Brand brand = brandService.queryBrandById(id);
+        if (brand == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(brand);
+    }
 }

@@ -68,7 +68,9 @@ public class GoodsServiceImpl implements GoodsService {
             BeanUtils.copyProperties(spu, spuBo);
             // 查询品牌名称
             Brand brand = brandMapper.selectByPrimaryKey(spu.getBrandId());
-            spuBo.setBname(brand.getName());
+            if(brand!=null){
+                spuBo.setBname(brand.getName());
+            }
             // 查询分类名称
             List<String> nameList = categoryService.queryNameByIds(Arrays.asList(spu.getCid1(), spu.getCid2(), spu.getCid3()));
             spuBo.setCname(StringUtils.join(nameList, "/"));

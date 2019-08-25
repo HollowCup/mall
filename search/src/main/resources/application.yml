@@ -1,0 +1,34 @@
+server:
+  port: 10088
+spring:
+  application:
+    name: search-service
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.0.101:9300
+  jackson:
+    default-property-inclusion: non_null # 配置json处理时忽略空值
+  resources:
+    add-mappings: true
+    chain:
+      enabled: true
+      gzipped: true
+      html-application-cache: true
+    cache:
+      period: 3600
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10081/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000

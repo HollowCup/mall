@@ -54,12 +54,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--amqp启动器-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>cup.com</groupId>
             <artifactId>item-interface</artifactId>

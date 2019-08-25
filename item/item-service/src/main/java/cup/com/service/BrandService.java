@@ -19,4 +19,6 @@ public interface BrandService {
     void addBrand(Brand brand, List<Long> categories);
 
     List<Brand> queryBrandByCategoryId(Long cid);
+
+    Brand queryBrandById(Long id);
 }

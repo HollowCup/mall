@@ -12,6 +12,7 @@
         <module>item</module>
         <module>common</module>
         <module>upload</module>
+        <module>search</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -227,7 +228,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
+            <version>3.7</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

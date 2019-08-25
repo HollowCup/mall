@@ -68,4 +68,14 @@ public class CategoryController {
         categoryService.deleteCategory(cid);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    @GetMapping("/queryNameByIds")
+    @ApiOperation(value = "根据ids类目名称", notes = "根据ids类目名称")
+    public ResponseEntity<List<String>> queryNameByIds(@RequestParam("ids")List<Long> ids){
+        List<String> names = categoryService.queryNameByIds(ids);
+        if (CollectionUtils.isEmpty(names)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(names);
+    }
 }
