@@ -1,7 +1,9 @@
 package cup.com.api;
 
+import cup.com.pojo.SpecGroup;
 import cup.com.pojo.SpecParam;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,4 +18,7 @@ public interface SpecificationApi {
             @RequestParam(value = "cid", required = false) Long cid,
             @RequestParam(value = "generic", required = false) Boolean generic,
             @RequestParam(value = "searching", required = false) Boolean searching);
+
+    @GetMapping("/groups/param/{cid}")
+    List<SpecGroup> queryGroupsWithParam(@PathVariable("cid") Long cid);
 }

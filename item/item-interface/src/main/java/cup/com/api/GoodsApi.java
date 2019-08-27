@@ -3,6 +3,7 @@ package cup.com.api;
 import cup.com.bo.SpuBo;
 import cup.com.pojo.PageResult;
 import cup.com.pojo.Sku;
+import cup.com.pojo.Spu;
 import cup.com.pojo.SpuDetail;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,4 +26,7 @@ public interface GoodsApi {
 
     @GetMapping("/sku/list")
     List<Sku> querySkusBySpuId(@RequestParam("spuId") Long spuId);
+
+    @GetMapping("{id}")
+    Spu querySpuById(@PathVariable("id") Long id);
 }

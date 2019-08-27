@@ -68,7 +68,7 @@ public class GoodsServiceImpl implements GoodsService {
             BeanUtils.copyProperties(spu, spuBo);
             // 查询品牌名称
             Brand brand = brandMapper.selectByPrimaryKey(spu.getBrandId());
-            if(brand!=null){
+            if (brand != null) {
                 spuBo.setBname(brand.getName());
             }
             // 查询分类名称
@@ -141,6 +141,11 @@ public class GoodsServiceImpl implements GoodsService {
         spuBo.setLastUpdateTime(new Date());
         spuMapper.updateByPrimaryKeySelective(spuBo);
         spuDetailMapper.updateByPrimaryKeySelective(spuBo.getSpuDetail());
+    }
+
+    @Override
+    public Spu querySpuById(Long id) {
+        return spuMapper.selectByPrimaryKey(id);
     }
 
     private void saveSkuAndStock(SpuBo spuBo) {

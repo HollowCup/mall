@@ -13,6 +13,7 @@
         <module>common</module>
         <module>upload</module>
         <module>search</module>
+        <module>goods-web</module>
     </modules>
     <packaging>pom</packaging>
 

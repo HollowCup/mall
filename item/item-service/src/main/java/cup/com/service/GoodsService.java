@@ -3,6 +3,7 @@ package cup.com.service;
 import cup.com.bo.SpuBo;
 import cup.com.pojo.PageResult;
 import cup.com.pojo.Sku;
+import cup.com.pojo.Spu;
 import cup.com.pojo.SpuDetail;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface GoodsService {
     List<Sku> querySkusBySpuId(Long spuId);
 
     void updateGoods(SpuBo spuBo);
+
+    Spu querySpuById(Long id);
 }

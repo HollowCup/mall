@@ -3,6 +3,7 @@ package cup.com.controller;
 import cup.com.bo.SpuBo;
 import cup.com.pojo.PageResult;
 import cup.com.pojo.Sku;
+import cup.com.pojo.Spu;
 import cup.com.pojo.SpuDetail;
 import cup.com.service.GoodsService;
 import io.swagger.annotations.Api;
@@ -52,7 +53,7 @@ public class GoodsController {
 
     @PutMapping("/update")
     @ApiOperation(value = "修改商品", notes = "修改商品")
-    public ResponseEntity<Void> updateGoods(@RequestBody SpuBo spuBo){
+    public ResponseEntity<Void> updateGoods(@RequestBody SpuBo spuBo) {
         goodsService.updateGoods(spuBo);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
@@ -76,5 +77,15 @@ public class GoodsController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(skus);
+    }
+
+    @GetMapping("{id}")
+    @ApiOperation(value = "根据spuId查询Spu", notes = "根据spuId查询Spu")
+    public ResponseEntity<Spu> querySpuById(@PathVariable("id") Long id) {
+        Spu spu = goodsService.querySpuById(id);
+        if (spu == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(spu);
     }
 }
