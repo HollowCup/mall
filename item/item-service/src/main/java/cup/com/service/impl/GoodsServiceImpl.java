@@ -8,6 +8,8 @@ import cup.com.pojo.*;
 import cup.com.service.CategoryService;
 import cup.com.service.GoodsService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,17 +31,19 @@ import java.util.stream.Collectors;
 public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
-    SpuMapper spuMapper;
+    private SpuMapper spuMapper;
     @Autowired
-    BrandMapper brandMapper;
+    private BrandMapper brandMapper;
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
     @Autowired
-    SpuDetailMapper spuDetailMapper;
+    private SpuDetailMapper spuDetailMapper;
     @Autowired
-    SkuMapper skuMapper;
+    private SkuMapper skuMapper;
     @Autowired
-    StockMapper stockMapper;
+    private StockMapper stockMapper;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Override
     public PageResult<SpuBo> querySpuByPage(String key, Boolean saleable, Integer page, Integer rows) {
@@ -99,6 +103,7 @@ public class GoodsServiceImpl implements GoodsService {
         // 新增sku、新增stock
         saveSkuAndStock(spuBo);
 
+        sendMsg("insert",spuBo.getId());
     }
 
     @Override
@@ -141,6 +146,8 @@ public class GoodsServiceImpl implements GoodsService {
         spuBo.setLastUpdateTime(new Date());
         spuMapper.updateByPrimaryKeySelective(spuBo);
         spuDetailMapper.updateByPrimaryKeySelective(spuBo.getSpuDetail());
+
+        sendMsg("update",spuBo.getId());
     }
 
     @Override
@@ -162,5 +169,13 @@ public class GoodsServiceImpl implements GoodsService {
             stock.setStock(sku.getStock());
             stockMapper.insertSelective(stock);
         });
+    }
+
+    private void sendMsg(String type,Long id){
+        try {
+            amqpTemplate.convertAndSend("item." + type, id);
+        } catch (AmqpException e) {
+           e.printStackTrace();
+        }
     }
 }

@@ -8,4 +8,6 @@ package cup.com.service;
  */
 public interface GoodsHtmlService {
     void createHtml(Long spuId);
+
+    void deleteHtml(Long id);
 }

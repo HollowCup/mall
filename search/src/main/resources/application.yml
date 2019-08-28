@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: search-service
+  rabbitmq:
+    virtual-host: /mall
+    username: guest
+    password: guest
+    host: 127.0.0.1
   data:
     elasticsearch:
       cluster-name: elasticsearch

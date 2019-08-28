@@ -168,6 +168,18 @@ public class SearchServiceImpl implements SearchService {
         return new SearchResult(goodsPage.getTotalElements(), goodsPage.getTotalPages(), goodsPage.getContent(), categories, brands, specs);
     }
 
+    @Override
+    public void save(Long id) throws IOException {
+        Spu spu = goodsClient.querySpuById(id);
+        Goods goods = buildGoods(spu);
+        goodsRepository.save(goods);
+    }
+
+    @Override
+    public void delete(Long id) throws IOException {
+        goodsRepository.deleteById(id);
+    }
+
     private BoolQueryBuilder buildBoolQueryBuilder(SearchRequest request) {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         // 给布尔查询添加基本查询条件
@@ -184,7 +196,7 @@ public class SearchServiceImpl implements SearchService {
             } else {
                 key = "specs." + key + ".keyword";
             }
-            boolQueryBuilder.filter(QueryBuilders.termQuery(key,entry.getValue()));
+            boolQueryBuilder.filter(QueryBuilders.termQuery(key, entry.getValue()));
         }
         return boolQueryBuilder;
     }
