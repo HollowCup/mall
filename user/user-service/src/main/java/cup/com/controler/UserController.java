@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @GetMapping("query")
-    @ApiOperation(value = "用户注册", notes = "用户注册")
+    @ApiOperation(value = "查询用户", notes = "查询用户")
     public ResponseEntity<User> queryUser(@RequestParam("username")String username,@RequestParam("password")String password){
         User user = userService.queryUser(username,password);
         if (user == null){

@@ -16,6 +16,7 @@
         <module>goods-web</module>
         <module>user</module>
         <module>sms</module>
+        <module>auth</module>
     </modules>
     <packaging>pom</packaging>
 
