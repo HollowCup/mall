@@ -88,4 +88,14 @@ public class GoodsController {
         }
         return ResponseEntity.ok(spu);
     }
+
+    @GetMapping("sku/{skuId}")
+    @ApiOperation(value = "根据spuId查询Spu", notes = "根据spuId查询Spu")
+    public ResponseEntity<Sku> querySkuBySkuId(@PathVariable("skuId") Long skuId) {
+        Sku sku = goodsService.querySkuBySkuId(skuId);
+        if (sku == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(sku);
+    }
 }

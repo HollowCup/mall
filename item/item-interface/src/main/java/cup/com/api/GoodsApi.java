@@ -5,6 +5,8 @@ import cup.com.pojo.PageResult;
 import cup.com.pojo.Sku;
 import cup.com.pojo.Spu;
 import cup.com.pojo.SpuDetail;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,4 +31,7 @@ public interface GoodsApi {
 
     @GetMapping("{id}")
     Spu querySpuById(@PathVariable("id") Long id);
+
+    @GetMapping("sku/{skuId}")
+    Sku querySkuBySkuId(@PathVariable("skuId") Long skuId);
 }

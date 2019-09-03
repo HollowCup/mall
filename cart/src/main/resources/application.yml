@@ -1,0 +1,28 @@
+server:
+  port: 10089
+spring:
+  application:
+    name: cart-service
+  redis:
+    host: 192.168.0.111
+  datasource:
+    url: jdbc:mysql://192.168.0.111:3306/mall?characterEncoding=UTF-8&useSSL=false
+    username: root
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 10
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10081/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+
+jwt:
+  pubKeyPath: C:\\tmp\\rsa\\rsa.pub # 公钥地址
+  cookieName: AUTH_TOKEN
